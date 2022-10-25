@@ -1,5 +1,4 @@
 import * as express from 'express';
-import routers from './routers';
 
 class App {
   public app: express.Express;
@@ -23,7 +22,6 @@ class App {
 
     this.app.use(express.json());
     this.app.use(accessControl);
-    this.app.use(routers);
   }
 
   public start(PORT: string | number):void {
