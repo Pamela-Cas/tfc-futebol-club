@@ -22,7 +22,7 @@ export default class UserService {
     if (!bcrypt.compareSync(password, recebeUser?.password)) {
       throw new Error('401 | Incorrect email or password');
     }
-    return token.generateToken({ email });
+    return token.generateToken({ email, role: recebeUser.role });
   };
 
   public getUser = async (email: string): Promise<string> => {
