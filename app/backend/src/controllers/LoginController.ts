@@ -9,12 +9,6 @@ export default class UserController {
 
   public userLogin = async (req: Request, res: Response) => {
     const { email, password } = req.body;
-    // console.log('email', email, 'password', password);
-
-    // const dadosUser = { email, password };
-    // const response = await this.userService.userLogin(dadosUser);
-
-    // return res.status(200).json({ token: response });
 
     try {
       const token = await this.service.userLogin({ email, password });

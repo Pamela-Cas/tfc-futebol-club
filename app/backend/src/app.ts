@@ -10,7 +10,7 @@ class App {
     this.app = express();
 
     this.config();
-    this.app.use('/login', routes.login);
+    this.app.use(routes);
     // Não remover essa rota
     this.app.get('/', (req, res) => res.json({ ok: true }));
     this.app.use(vme);

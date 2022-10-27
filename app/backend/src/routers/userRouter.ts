@@ -1,15 +1,13 @@
-import { Router } from 'express';
+import * as express from 'express';
 
 import UserController from '../controllers/LoginController';
-import UserService from '../services/LoginServices';
 
 import jwtValidate from '../middleware/jwtValidate';
 import loginValidation from '../middleware/loginValidation';
+import UserService from '../services/LoginServices';
 
-const userRouter = Router();
-
+const userRouter = express.Router();
 const userService = new UserService();
-
 const userController = new UserController(userService);
 
 userRouter.post('/', loginValidation, userController.userLogin);
