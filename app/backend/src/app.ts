@@ -1,6 +1,7 @@
 import * as express from 'express';
-import 'express-async-errors';
-import router from './routers/index.ts/index';
+import routes from './routers/index';
+
+import vme from './middleware/vme';
 
 class App {
   public app: express.Express;
@@ -9,9 +10,10 @@ class App {
     this.app = express();
 
     this.config();
-
+    this.app.use('/login', routes.login);
     // Não remover essa rota
     this.app.get('/', (req, res) => res.json({ ok: true }));
+    this.app.use(vme);
   }
 
   private config():void {
@@ -24,7 +26,6 @@ class App {
 
     this.app.use(express.json());
     this.app.use(accessControl);
-    this.app.use(router);
   }
 
   public start(PORT: string | number):void {
