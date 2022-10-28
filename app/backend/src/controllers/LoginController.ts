@@ -22,6 +22,5 @@ export default class UserController {
     const { JwtPayload } = req.body;
     console.log(JwtPayload);
     return res.status(200).json({ role: JwtPayload.payload.role });
-    // return res.status(200).json({ role: JwtPayload.role });
   };
 }
