@@ -23,6 +23,23 @@ class MatchService {
         }],
     });
   }
+
+  public getAllInProgress(inProgress: boolean) {
+    return this.matchServ.findAll({
+      where: { inProgress },
+      include: [
+        {
+          model: Team,
+          as: 'teamHome',
+          attributes: ['teamName'],
+        },
+        {
+          model: Team,
+          as: 'teamAway',
+          attributes: ['teamName'],
+        }],
+    });
+  }
 }
 
 export default MatchService;
