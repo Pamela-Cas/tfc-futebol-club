@@ -1,5 +1,6 @@
 import Match from '../database/models/MatchesModel';
 import Team from '../database/models/TeamModel';
+import IMatch from '../Interfaces/IMatch';
 
 class MatchService {
   private matchServ: typeof Match;
@@ -39,6 +40,18 @@ class MatchService {
           attributes: ['teamName'],
         }],
     });
+  }
+
+  public async createMatches(match: IMatch) {
+    const teams = await this.matchServ.findAll({
+
+      where: { id: [match.homeTeam, match.awayTeam] },
+    });
+
+    if (teams.length !== 2) {
+      throw new Error('There is no team with such id!');
+    }
+    return this.matchServ.create(match);
   }
 }
 

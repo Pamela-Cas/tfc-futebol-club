@@ -20,6 +20,24 @@ class MatchController {
     }
     res.status(200).json(matches);
   };
+
+  public createMatches = async (req: Request, res: Response) => {
+    const { homeTeam, awayTeam, homeTeamGoals, awayTeamGoals } = req.body;
+    if (homeTeam === awayTeam) {
+      return res.status(400).json({ message: 'bad request' });
+    }
+    try {
+      const matches = await this.matchService.createMatches({
+        homeTeam,
+        awayTeam,
+        homeTeamGoals,
+        awayTeamGoals,
+        inProgress: true });
+      res.status(201).json(matches);
+    } catch (err) {
+      return res.status(404).json({ message: 'Not Found!' });
+    }
+  };
 }
 
 export default MatchController;
