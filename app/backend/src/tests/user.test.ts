@@ -22,6 +22,11 @@ const reqUser = {
 
   }
 
+  const wrongUser = {
+    email: 11,
+    password: "secret_admin"
+
+  }
 
 describe('/login', () => {
     describe('/POST', () => {
@@ -39,5 +44,22 @@ describe('/login', () => {
             expect(chaiResponse.status).to.equal(200);
             expect(chaiResponse.body).to.have.property('token')
         });
+    });
+    describe('/POST', () => {
+      let chaiResponse: Response;
+    
+      beforeEach(async () => {
+        sinon.stub(User, "findOne").resolves({} as User);
+      });
+    
+      afterEach(() => {
+        sinon.restore();
+      });
+    
+      it('Passando um usuário Inválido', async () => {
+        chaiResponse = await chai.request(app).post("/login").send(wrongUser);
+    
+        expect(chaiResponse.status).to.equal(401);
+      });
     });
 });
