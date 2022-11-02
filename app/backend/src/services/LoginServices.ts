@@ -11,10 +11,9 @@ export default class UserService {
     const { email, password } = dadosUser;
 
     const recebeUser = await this.userModel.findOne({
-      // attributes: ['email', 'password'],
       where: { email },
     });
-
+    console.log(recebeUser);
     if (!recebeUser) {
       throw new Error('401 | Incorrect email or password');
     }
