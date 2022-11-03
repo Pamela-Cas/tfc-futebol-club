@@ -15,14 +15,14 @@ const jwtValidate = {
   validateToken: (req: Request, res:Response, next: NextFunction) => {
     const { authorization } = req.headers;
 
-    if (!authorization) throw new Error('401|Token not found');
+    if (!authorization) throw new Error('401|Token must be a valid token');
     try {
       const testToken = JWT.verify(authorization, JWT_SECRET);
       req.body.JwtPayload = testToken;
       next();
     } catch (error) {
       console.log(error);
-      throw new Error('401|Expired or invalid token');
+      throw new Error('401|Token must be a valid token');
     }
   },
 };
