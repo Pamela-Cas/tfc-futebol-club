@@ -36,7 +36,7 @@ class MatchController {
         inProgress: true });
       res.status(201).json(matches);
     } catch (err) {
-      return res.status(404).json({ message: 'Not Found!' });
+      return res.status(404).json({ message: 'There is no team with such id!' });
     }
   };
 
