@@ -1,8 +1,8 @@
-interface INewMatch {
+interface IMatch {
   homeTeam: number;
   awayTeam: number;
   homeTeamGoals: number;
   awayTeamGoals: number;
   inProgress: boolean;
 }
-export default INewMatch;
+export default IMatch;

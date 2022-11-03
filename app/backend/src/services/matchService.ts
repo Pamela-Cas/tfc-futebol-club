@@ -53,6 +53,10 @@ class MatchService {
     }
     return this.matchServ.create(match);
   }
+
+  public getByIDServ(id: number) {
+    return this.matchServ.update({ inProgress: false }, { where: { id } });
+  }
 }
 
 export default MatchService;

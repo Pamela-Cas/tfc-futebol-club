@@ -8,6 +8,6 @@ const matchService = new MatchService();
 const matchController = new MatchController(matchService);
 
 matchRouter.get('/', matchController.getAll);
-matchRouter.post('/', jwtValidate.validateToken, matchController.createMatches);
-
+matchRouter.post('/', jwtValidate.validateToken, matchController.createMatch);
+matchRouter.patch('/:id/finish', matchController.getByID);
 export default matchRouter;
