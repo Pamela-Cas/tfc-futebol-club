@@ -58,10 +58,6 @@ class MatchService {
     return this.matchServ.update({ inProgress: false }, { where: { id } });
   }
 
-  // public async upDate(id: number, homeTeamGoals: number, awayTeamGoals: number) {
-  //   return this.matchServ.update({ homeTeamGoals, awayTeamGoals }, { where: id });
-  // }
-
   public updateMatchId = async (id: number, homeTeamGoals: number, awayTeamGoals: number) => {
     await Match.update({ homeTeamGoals, awayTeamGoals }, { where: { id } });
   };
