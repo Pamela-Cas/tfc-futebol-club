@@ -45,5 +45,12 @@ class MatchController {
     const searchByID = await this.matchService.getByIDServ(+id);
     res.status(200).json(searchByID);
   };
+
+  public upDate = async (req: Request, res: Response) => {
+    const { id } = req.params;
+    const { homeTeamGoals, awayTeamGoals } = req.body;
+    await this.matchService.updateMatchId(parseInt(id, 10), homeTeamGoals, awayTeamGoals);
+    return res.status(200).json('Sucesso');
+  };
 }
 export default MatchController;
